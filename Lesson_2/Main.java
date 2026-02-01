@@ -2,6 +2,7 @@ public class Main {
     public static void main(String[] args) {
         printThreeWords();
         checkSumSign();
+        printColor();
     }
     
     public static void printThreeWords() {
@@ -19,6 +20,18 @@ public class Main {
             System.out.println("Sum is positive");
         } else {
             System.out.println("Sum is negative");
+        }
+    }
+    
+    public static void printColor() {
+        int value = 75;
+        
+        if (value <= 0) {
+            System.out.println("Red");
+        } else if (value <= 100) {
+            System.out.println("Yellow");
+        } else {
+            System.out.println("Green");
         }
     }
 }
