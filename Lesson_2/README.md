@@ -16,4 +16,10 @@ echo. >> README.md
 echo **╨Я╤А╨╛╨▓╨╡╤А╨║╨░:** >> README.md
 echo 1. javac Main.java >> README.md
 echo 2. java Main >> README.md
-echo 3. ╨Т╤Л╨▓╨╛╨┤: Orange, Banana, Apple (╨║╨░╨╢╨┤╨╛╨╡ ╤Б╨╗╨╛╨▓╨╛ ╨╜╨░ ╨╜╨╛╨▓╨╛╨╣ ╤Б╤В╤А╨╛╨║╨╡) >> README.md
+echo 3. ╨Т╤Л╨▓╨╛╨┤: Orange, Banana, Apple (╨║╨░╨╢╨┤╨╛╨╡ ╤Б╨╗╨╛╨▓╨╛ ╨╜╨░ ╨╜╨╛╨▓╨╛╨╣ ╤Б╤В╤А╨╛╨║╨╡) >> README.md 
+## Метод checkSumSign() 
+ 
+**Требование:** Создать метод checkSumSign() 
+который объявляет две переменные, суммирует их и выводит результат 
+**Проверка:** java Main 
+**Вывод:** Orange, Banana, Apple, Сумма положительная 
