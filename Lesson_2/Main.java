@@ -3,7 +3,14 @@ public class Main {
         printThreeWords();
         checkSumSign();
         printColor();
-        compareNumbers();  
+        compareNumbers();
+        
+        
+        System.out.println("\n=== Task 5 ===");
+        System.out.println("Sum of 5 and 7 in range 10-20: " + isSumInRange(5, 7));
+        System.out.println("Sum of 10 and 5 in range 10-20: " + isSumInRange(10, 5));
+        System.out.println("Sum of 5 and 20 in range 10-20: " + isSumInRange(5, 20));
+        System.out.println("Sum of 11 and 12 in range 10-20: " + isSumInRange(11, 12));
     }
     
     public static void printThreeWords() {
@@ -36,7 +43,7 @@ public class Main {
         }
     }
     
-      public static void compareNumbers() {
+    public static void compareNumbers() {
         int a = 10;
         int b = 20;
         
@@ -45,5 +52,10 @@ public class Main {
         } else {
             System.out.println("a < b");
         }
+    }
+    
+    public static boolean isSumInRange(int a, int b) {
+        int sum = a + b;
+        return sum >= 10 && sum <= 20;
     }
 }
