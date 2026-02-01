@@ -3,6 +3,7 @@ public class Main {
         printThreeWords();
         checkSumSign();
         printColor();
+        compareNumbers();  
     }
     
     public static void printThreeWords() {
@@ -32,6 +33,17 @@ public class Main {
             System.out.println("Yellow");
         } else {
             System.out.println("Green");
+        }
+    }
+    
+      public static void compareNumbers() {
+        int a = 10;
+        int b = 20;
+        
+        if (a >= b) {
+            System.out.println("a >= b");
+        } else {
+            System.out.println("a < b");
         }
     }
 }
