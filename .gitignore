@@ -1,7 +1,6 @@
 *.class 
-Lesson_2/10 
-README.txt 
 .vscode/ 
 .idea/ 
 bin/ 
 out/ 
+*.log 
