@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Lesson 7 TestNG Test Suite">
+    
+    <test name="All Tests">
+        <packages>
+            <package name=".*"/>
+        </packages>
+    </test>
+    
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ArithmeticOperationsTestNG"/>
+        </classes>
+    </test>
+    
+    <test name="Edge Cases">
+        <groups>
+            <run>
+                <include name="edge-cases"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TriangleAreaCalculatorTestNG"/>
+            <class name="NumberComparatorTestNG"/>
+        </classes>
+    </test>
+    
+</suite>
