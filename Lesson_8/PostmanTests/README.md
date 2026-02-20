@@ -1,16 +1,16 @@
-# Postman Echo API Tests 
- 
-Š®««¥ªæ¨ï  ¢â®â¥áâ®¢ ¤«ï Postman Echo API 
- 
-## ‡ ¤ ­¨¥ 
-- ‘®§¤ âì ª®««¥ªæ¨î Postman Echo 
--  ¯¨á âì  ¢â®â¥áâë ¤«ï ª ¦¤®£® ¬¥â®¤  ¨§ ¯ ¯ª¨ Request Methods 
-- à®¢¥à¨âì ª®¤ ®â¢¥â  200 
-- à®¢¥à¨âì â¥«® ®â¢¥â  (áà ¢­¨âì §­ ç¥­¨ï ¢á¥å ¯®«¥©) 
- 
-## Œ¥â®¤ë 
-- GET Request 
-- POST Request 
-- PUT Request 
-- PATCH Request 
-- DELETE Request 
+echo # Postman Echo API Tests > README.md
+echo. >> README.md
+echo ÐšÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ñ Ð°Ð²Ñ‚Ð¾Ñ‚ÐµÑÑ‚Ð¾Ð² Ð´Ð»Ñ Postman Echo API >> README.md
+echo. >> README.md
+echo ## Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ >> README.md
+echo - Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸ÑŽ Postman Echo >> README.md
+echo - ÐÐ°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð°Ð²Ñ‚Ð¾Ñ‚ÐµÑÑ‚Ñ‹ Ð´Ð»Ñ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð¼ÐµÑ‚Ð¾Ð´Ð° Ð¸Ð· Ð¿Ð°Ð¿ÐºÐ¸ Request Methods >> README.md
+echo - ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÐºÐ¾Ð´ Ð¾Ñ‚Ð²ÐµÑ‚Ð° 200 >> README.md
+echo - ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ñ‚ÐµÐ»Ð¾ Ð¾Ñ‚Ð²ÐµÑ‚Ð° (ÑÑ€Ð°Ð²Ð½Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÐµÐ¹) >> README.md
+echo. >> README.md
+echo ## ÐœÐµÑ‚Ð¾Ð´Ñ‹ >> README.md
+echo - GET Request >> README.md
+echo - POST Request >> README.md
+echo - PUT Request >> README.md
+echo - PATCH Request >> README.md
+echo - DELETE Request >> README.md
