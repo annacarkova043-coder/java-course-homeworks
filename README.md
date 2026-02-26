@@ -22,3 +22,27 @@ cd Lesson_6
 javac student/*.java phonebook/*.java Main.java 
 java Main 
 ``` 
+## Lesson 7: Unit Testing with JUnit 5 and TestNG
+
+This lesson demonstrates unit testing using two different frameworks: JUnit 5 and TestNG.
+
+### Programs (same in both branches):
+1. **FactorialCalculator** - Calculates factorial of a number
+2. **TriangleAreaCalculator** - Calculates area of triangles using different formulas
+3. **ArithmeticOperations** - Basic arithmetic operations (add, subtract, multiply, divide)
+4. **NumberComparator** - Compares two integers with various methods
+
+### Branches:
+- **Lesson_7_junit_5**: Contains JUnit 5 unit tests
+- **Lesson_7_testng**: Contains TestNG unit tests
+
+### Structure:
+
+### How to run:
+
+#### With JUnit 5:
+```bash
+git checkout Lesson_7_junit_5
+cd Lesson_7
+mvn clean test
+
