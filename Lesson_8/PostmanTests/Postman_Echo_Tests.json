@@ -1,0 +1,521 @@
+{
+  "info": {
+    "_postman_id": "444b73c8-35bf-4118-ac79-7418968bbe2f",
+    "name": "Postman Echo Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51792673",
+    "_collection_link": "https://go.postman.co/collection/51792673-444b73c8-35bf-4118-ac79-7418968bbe2f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Request Methods",
+      "item": [
+        {
+          "name": "GET Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.test(\"Environment check - pm object exists\", function() {\r",
+                  "    pm.expect(pm).to.be.an(\"object\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// GET Request Tests - ИСПРАВЛЕНО\r",
+                  "pm.test(\"GET - Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"GET - Response time is less than 500ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"GET - Response has required fields\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"args\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"headers\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"url\");\r",
+                  "});\r",
+                  "\r",
+                  "// ИСПРАВЛЕНО: Проверяем, что URL содержит базовый endpoint\r",
+                  "pm.test(\"GET - URL contains correct endpoint\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    // Проверяем, что URL включает правильный путь\r",
+                  "    pm.expect(jsonData.url).to.include(\"https://postman-echo.com/get\");\r",
+                  "});\r",
+                  "\r",
+                  "// ИСПРАВЛЕНО: Проверяем, что URL содержит параметры\r",
+                  "pm.test(\"GET - URL includes query parameters\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.url).to.include(\"?\");\r",
+                  "    pm.expect(jsonData.url).to.include(\"foo1=bar1\");\r",
+                  "    pm.expect(jsonData.url).to.include(\"foo2=bar2\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка query параметров в args объекте\r",
+                  "pm.test(\"GET - foo1 parameter equals bar1\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.args.foo1).to.equal(\"bar1\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"GET - foo2 parameter equals bar2\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.args.foo2).to.equal(\"bar2\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка, что args содержит оба параметра\r",
+                  "pm.test(\"GET - Args has 2 parameters\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(Object.keys(jsonData.args).length).to.equal(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"GET - Headers contain user-agent\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"user-agent\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"GET - Content-Type is JSON\", function () {\r",
+                  "    pm.response.to.have.header(\"Content-Type\");\r",
+                  "    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+                  "    pm.expect(contentType).to.include(\"application/json\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ],
+              "query": [
+                {
+                  "key": "foo1",
+                  "value": "bar1"
+                },
+                {
+                  "key": "foo2",
+                  "value": "bar2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.test(\"Environment check - pm object exists\", function() {\r",
+                  "    pm.expect(pm).to.be.an(\"object\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// POST Request Tests - УПРОЩЕННАЯ ВЕРСИЯ\r",
+                  "pm.test(\"POST - Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - Response time OK\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+                  "});\r",
+                  "\r",
+                  "// Проверяем, что ответ содержит нужные поля\r",
+                  "pm.test(\"POST - Response has json field\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"json\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверяем содержимое json поля\r",
+                  "pm.test(\"POST - JSON contains name\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json.name).to.equal(\"test user\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - JSON contains age\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json.age).to.equal(25);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - JSON contains active\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json.active).to.equal(true);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - JSON contains tags\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json.tags).to.be.an(\"array\");\r",
+                  "    pm.expect(jsonData.json.tags.length).to.be.at.least(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - JSON contains address\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json.address.city).to.equal(\"Moscow\");\r",
+                  "    pm.expect(jsonData.json.address.zip).to.equal(123456);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - URL is correct\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.url).to.equal(\"https://postman-echo.com/post\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"POST - Headers OK\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"content-type\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"test user\",\r\n    \"age\": 25,\r\n    \"active\": true,\r\n    \"tags\": [\"student\", \"java\"],\r\n    \"address\": {\r\n        \"city\": \"Moscow\",\r\n        \"zip\": 123456\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://postman-echo.com/post",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "post"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.test(\"Environment check - pm object exists\", function() {\r",
+                  "    pm.expect(pm).to.be.an(\"object\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// PUT Request Tests - УПРОЩЕННАЯ ВЕРСИЯ\r",
+                  "pm.test(\"PUT - Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"PUT - Response time OK\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка наличия основных полей\r",
+                  "pm.test(\"PUT - Response has required fields\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"url\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"headers\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"json\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"PUT - URL is correct\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.url).to.equal(\"https://postman-echo.com/put\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка, что данные были получены\r",
+                  "pm.test(\"PUT - Data was received\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json).to.be.an(\"object\");\r",
+                  "    pm.expect(Object.keys(jsonData.json).length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка заголовков\r",
+                  "pm.test(\"PUT - Headers are present\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"content-type\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"PUT - Args empty\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(Object.keys(jsonData.args).length).to.equal(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"updated user\",\r\n    \"status\": \"active\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://postman-echo.com/put",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "put"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.test(\"Environment check - pm object exists\", function() {\r",
+                  "    pm.expect(pm).to.be.an(\"object\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// PATCH Request Tests - УНИВЕРСАЛЬНАЯ ВЕРСИЯ\r",
+                  "pm.test(\"PATCH - Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"PATCH - Response time is less than 600ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка наличия полей\r",
+                  "pm.test(\"PATCH - Response has required fields\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"args\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"headers\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"url\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"json\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"PATCH - URL matches request\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.url).to.equal(\"https://postman-echo.com/patch\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка, что данные были получены\r",
+                  "pm.test(\"PATCH - JSON data exists\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.json).to.be.an(\"object\");\r",
+                  "    pm.expect(Object.keys(jsonData.json).length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "// Динамическая проверка: сравниваем отправленные и полученные данные\r",
+                  "pm.test(\"PATCH - Sent data matches received data\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    const sentData = JSON.parse(pm.request.body.raw);\r",
+                  "    \r",
+                  "    // Проверяем, что все ключи из отправленных данных есть в ответе\r",
+                  "    Object.keys(sentData).forEach(key => {\r",
+                  "        pm.expect(jsonData.json).to.have.property(key);\r",
+                  "        pm.expect(jsonData.json[key]).to.equal(sentData[key]);\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка заголовков\r",
+                  "pm.test(\"PATCH - Headers contain content-type\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"content-type\");\r",
+                  "    pm.expect(jsonData.headers[\"content-type\"]).to.include(\"application/json\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка args\r",
+                  "pm.test(\"PATCH - Args are empty\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(Object.keys(jsonData.args).length).to.equal(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"partially updated\",\r\n    \"field\": \"new value\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://postman-echo.com/patch",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "patch"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.test(\"Environment check - pm object exists\", function() {\r",
+                  "    pm.expect(pm).to.be.an(\"object\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// DELETE Request Tests - УПРОЩЕННАЯ ВЕРСИЯ\r",
+                  "pm.test(\"DELETE - Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"DELETE - Response time OK\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка структуры ответа\r",
+                  "pm.test(\"DELETE - Response has required fields\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"url\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"headers\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"args\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка URL\r",
+                  "pm.test(\"DELETE - URL contains correct endpoint\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.url).to.include(\"https://postman-echo.com/delete\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка args (может быть пустым)\r",
+                  "pm.test(\"DELETE - Args is an object\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.args).to.be.an(\"object\");\r",
+                  "});\r",
+                  "\r",
+                  "// Проверка заголовков\r",
+                  "pm.test(\"DELETE - Headers are present\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"host\");\r",
+                  "    pm.expect(jsonData.headers).to.have.property(\"user-agent\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/delete?confirm=true&id=123",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "delete"
+              ],
+              "query": [
+                {
+                  "key": "confirm",
+                  "value": "true"
+                },
+                {
+                  "key": "id",
+                  "value": "123"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
